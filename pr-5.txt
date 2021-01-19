@@ -1,0 +1,35 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src='script.js'></script>
+</body>
+</html>
+================================================================
+script.js
+
+var request=new XMLHttpRequest();//1.create a new request
+
+request.open('GET','https://restcountries.eu/rest/v2/all',true);//2.create a connection
+
+request.send();//3.send the connection
+
+request.onload=function()//4.register event listener to load the data as and when available
+{
+ 
+    var countrydata=JSON.parse(this.response);
+    var elem=0;
+   
+    countrydata.forEach(element=>{element.currencies.forEach((currency)=>{if(currency.code==="USD")
+            {
+                console.log(element.name,currency.code);
+            }
+        })
+    });
+    
+=================================================================================
